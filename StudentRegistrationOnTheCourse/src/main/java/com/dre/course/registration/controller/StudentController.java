@@ -52,7 +52,7 @@ public Student toUpdate(@PathVariable Long id, @RequestBody Student student ) {
 	return studentRepository.save(current);
 }
 
-//Deletar
+//Delete
 @DeleteMapping(value="delete")
 @ResponseStatus(HttpStatus.NO_CONTENT)
 public void delete(@PathVariable Long id) {
