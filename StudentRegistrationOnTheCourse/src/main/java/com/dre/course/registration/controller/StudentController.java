@@ -45,7 +45,7 @@ public Student insert(@RequestBody Student student) {
 }
 
 //Update
-@PutMapping("/{id")
+@PutMapping("/{id}")
 public Student toUpdate(@PathVariable Long id, @RequestBody Student student ) {
 	Student current= studentRepository.findById(id).get();
 	BeanUtils.copyProperties(student, current,"id");
