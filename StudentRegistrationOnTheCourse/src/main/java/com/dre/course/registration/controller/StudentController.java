@@ -44,7 +44,7 @@ public Student insert(@RequestBody Student student) {
 	return result;
 }
 
-//Atualizar 
+//Update
 @PutMapping("/{id")
 public Student toUpdate(@PathVariable Long id, @RequestBody Student student ) {
 	Student current= studentRepository.findById(id).get();
