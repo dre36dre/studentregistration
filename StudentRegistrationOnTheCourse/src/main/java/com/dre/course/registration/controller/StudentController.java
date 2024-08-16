@@ -2,12 +2,17 @@ package com.dre.course.registration.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dre.course.registration.studentRepository;
@@ -37,6 +42,21 @@ public Student findById(@PathVariable Long id) {
 public Student insert(@RequestBody Student student) {
 	Student result=studentRepository.save(student);
 	return result;
+}
+
+//Atualizar 
+@PutMapping("/{id")
+public Student toUpdate(@PathVariable Long id, @RequestBody Student student ) {
+	Student current= studentRepository.findById(id).get();
+	BeanUtils.copyProperties(student, current,"id");
+	return studentRepository.save(current);
+}
+
+//Deletar
+@DeleteMapping(value="delete")
+@ResponseStatus(HttpStatus.NO_CONTENT)
+public void delete(@PathVariable Long id) {
+	studentRepository.deleteById(id);
 }
 	
 }
