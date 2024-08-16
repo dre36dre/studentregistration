@@ -1,0 +1,42 @@
+package com.dre.course.registration.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dre.course.registration.studentRepository;
+import com.dre.course.registration.entities.Student;
+
+@RestController
+@RequestMapping(value="students")
+public class StudentController {
+	
+@Autowired	
+studentRepository studentRepository;
+
+@GetMapping
+public List<Student> findAll(){
+	List<Student> result=studentRepository.findAll();
+	return result;
+}
+
+@GetMapping(value="/{id}")
+public Student findById(@PathVariable Long id) {
+	Student result=studentRepository.findById(id).get();
+	return result;
+	}
+
+//Salvar
+@PostMapping(value="{id}")
+public Student insert(@RequestBody Student student) {
+	Student result=studentRepository.save(student);
+	return result;
+}
+	
+}
