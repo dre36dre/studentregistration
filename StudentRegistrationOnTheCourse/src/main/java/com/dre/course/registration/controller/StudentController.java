@@ -44,6 +44,7 @@ public Student insert(@RequestBody Student student) {
 	return result;
 }
 
+
 //Update
 @PutMapping("/{id}")
 public Student toUpdate(@PathVariable Long id, @RequestBody Student student ) {
